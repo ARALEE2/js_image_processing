@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="JS/JS_global.js"></script>
+    <script type="text/javascript" src="JS/JS_CV_histo.js"></script>
+    <script type="text/javascript" src="JS/JS_CV_geometry.js"></script>
+    <script type="text/javascript" src="JS/JS_CV_pixel.js"></script>
+    <script type="text/javascript" src="JS/JS_CV_area.js"></script>
+    <script lang="javascript">
+
+        // 알고리즘 선택 함수
+        function selectAlgo(selNum) {
+            switch(parseInt(selNum.value)) {
+                case 100: equal_image();        break;
+                case 101: add_image();          break;
+                case 102: dark_image();         break;
+                case 103: reverse_image();      break;
+                case 104: bw_image_1();         break;
+                case 105: bw_image_2();         break;
+                case 106: bw_image_3();         break;
+                case 107: gamma_cor_image();    break;
+                case 108: stress_trans_image(); break;
+
+                case 201: mirror_hor_image();   break;
+                case 202: mirror_ver_image();   break;
+                case 203: zoomOut_image();      break;
+                case 204: zoomIn_foward_image();     break;
+                case 205: zoomIn_back_image();       break;
+                case 206: move_image();         break;
+                case 207: rotate_image();       break;
+                case 208: rotate_image_2();     break;
+
+                case 301: histoSt_image();      break;
+                case 302: endIn_image();        break;
+                case 303: equalize_image();     break;
+
+                case 401: embos_image();        break;
+                case 402: blur_image_1();       break;
+                case 403: blur_image_2();       break;
+                case 404: edge_image();         break;
+                case 405: lapla_image_1();      break;
+                case 406: lapla_image_2();      break;
+            }
+        }
+
+    </script>
+</head>
+<body onload="init()">
+    <h2>영상처리 프로그램 Preview Ver.2</h2>
+    <form>
+        <input type="file" id="inFile" onchange="fileTypeCheck(this)"
+            accept=".raw, image/jpg, image/png"/> <br />
+        <select name="pixel" onchange="selectAlgo(this.form.pixel)" >
+            <option value=0>화소점 선택</option>
+            <optgroup label="화소점 처리">
+                <option value=100>0. 동일영상</option>
+                <option value=101>1. 밝게</option>
+                <option value=102>2. 어둡게</option>
+                <option value=103>3. 반전</option>
+                <option value=104>4. 흑백 128</option>
+                <option value=105>5. 흑백 평균값</option>
+                <option value=106>6. 흑백 중앙값</option>
+                <option value=107>7. 감마 보정</option>
+                <option value=108>8. 범위 강조 변환</option>
+            </optgroup>
+        </select>
+        <select name="geometry" onchange="selectAlgo(this.form.geometry)" >
+            <option value=0>기하학 선택</option>
+            <optgroup label="기하학 처리">
+                <option value=201>1. 좌우 반전</option>
+                <option value=202>2. 상하 반전</option>
+                <option value=203>3. 축소</option>
+                <option value=204>4. 확대 Forwarding</option>
+                <option value=205>5. 확대 Backwarding</option>
+                <option value=206>6. 이동</option>
+                <option value=208>7. 회전</option>
+            </optgroup>
+        </select>
+        <select name="histogram" onchange="selectAlgo(this.form.histogram)" >
+            <option value=0>히스토그램 선택</option>
+            <optgroup label="히스토그램 처리">
+                <option value=301>1. 히스토그램 스트래칭</option>
+                <option value=302>2. 엔드인 탐색</option>
+                <option value=303>3. 평활화</option>
+            </optgroup>
+        </select>
+        <select name="area" onchange="selectAlgo(this.form.area)" >
+            <option value=0>화소영역 선택</option>
+            <optgroup label="화소영역 처리">
+                <option value=401>1. 엠보싱</option>
+                <option value=402>2. 블러링 연하게</option>
+                <option value=403>3. 블러링 강하게</option>
+                <option value=404>4. 경계선</option>
+                <option value=405>5. 라플라시안 연하게</option>
+                <option value=406>6. 라플라시안 강하게</option>
+            </optgroup>
+        </select>
+    </form> <hr />
+    <canvas id="inCanvas" style="background-color:cadetblue"></canvas>
+    <canvas id="outCanvas" style="background-color:darkcyan"></canvas>
+
+    </canvas>
+</body>
+</html>
